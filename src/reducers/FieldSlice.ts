@@ -11,10 +11,13 @@ const fieldSlice = createSlice({
             state.push(action.payload);
         },
         updateField: (state, action) => {
-
+            const index = state.findIndex((field) => field.field_code === action.payload.field_code);
+            if (index !== -1) {
+                state[index] = action.payload;
+            }
         },
         deleteField: (state, action) => {
-
+            return state.filter((field) => field.field_code !== action.payload.field_code);
         },
     },
 });

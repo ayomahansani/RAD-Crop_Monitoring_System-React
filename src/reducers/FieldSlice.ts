@@ -8,7 +8,7 @@ const fieldSlice = createSlice({
     initialState,
     reducers: {
         addField: (state, action) => {
-
+            state.push(action.payload);
         },
         updateField: (state, action) => {
 

@@ -89,10 +89,10 @@ const FieldFormComponent = () => {
 
     return (
         <>
-            <form className="mx-1 mt-0 p-3 rounded-lg border-3 border-green-800">
+            <form className="mx-1 mt-0 p-3 rounded-lg border-2 border-green-800 shadow-lg">
                 <div className="grid gap-6 mb-6 md:grid-cols-3">
                     <div>
-                        <label htmlFor="field_code" className="block mb-2 text-sm font-medium text-gray-900">
+                        <label htmlFor="field_code" className="block mb-2 text-sm font-bold text-gray-700">
                             Field Code
                         </label>
                         <input
@@ -101,13 +101,13 @@ const FieldFormComponent = () => {
                             value={fieldCode}
                             onChange={(e) => setFieldCode(e.target.value)}
                             onKeyDown={handleFieldCodeEnter}
-                            className="w-full p-1 border rounded bg-[#5ea080] focus:outline-none focus:border-none"
+                            className="w-full p-1 border border-green-800 rounded bg-gray-100 focus:outline-none shadow-md"
                             placeholder="F123"
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="field_name" className="block mb-2 text-sm font-medium text-gray-900">
+                        <label htmlFor="field_name" className="block mb-2 text-sm font-bold text-gray-700">
                             Field Name
                         </label>
                         <input
@@ -115,13 +115,13 @@ const FieldFormComponent = () => {
                             id="field_name"
                             value={fieldName}
                             onChange={(e) => setFieldName(e.target.value)}
-                            className="w-full p-1 border rounded bg-[#5ea080] focus:outline-none focus:border-none"
+                            className="w-full p-1 border border-green-800 rounded bg-gray-100 focus:outline-none shadow-md"
                             placeholder="Main Field"
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="location" className="block mb-2 text-sm font-medium text-gray-900">
+                        <label htmlFor="location" className="block mb-2 text-sm font-bold text-gray-700">
                             Location
                         </label>
                         <input
@@ -129,13 +129,13 @@ const FieldFormComponent = () => {
                             id="location"
                             value={fieldLocation}
                             onChange={(e) => setFieldLocation(e.target.value)}
-                            className="w-full p-1 border rounded bg-[#5ea080] focus:outline-none focus:border-none"
+                            className="w-full p-1 border border-green-800 rounded bg-gray-100 focus:outline-none shadow-md"
                             placeholder="City"
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="field_size" className="block mb-2 text-sm font-medium text-gray-900">
+                        <label htmlFor="field_size" className="block mb-2 text-sm font-bold text-gray-700">
                             Field Size
                         </label>
                         <input
@@ -143,33 +143,33 @@ const FieldFormComponent = () => {
                             id="field_size"
                             value={fieldExtentSize}
                             onChange={(e) => setFieldExtentSize(Number(e.target.value))}
-                            className="w-full p-1 border rounded bg-[#5ea080] focus:outline-none focus:border-none"
+                            className="w-full p-1 border border-green-800 rounded bg-gray-100 focus:outline-none shadow-md"
                             placeholder="100"
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="field_image1" className="block mb-2 text-sm font-medium text-gray-900">
+                        <label htmlFor="field_image1" className="block mb-2 text-sm font-bold text-gray-700">
                             Field Image 1
                         </label>
                         <input
                             type="file"
                             id="field_image1"
                             onChange={(e) => handleImageChange(e, setFieldImage1, setPreviewImage1)}
-                            className="w-full p-1.5 text-xs border rounded border-green-400"
+                            className="w-full p-1.5 text-xs border border-green-800 rounded bg-gray-100 shadow-md"
                             accept="image/*"
                         />
                         {previewImage1 && <img src={previewImage1} alt="Preview 1" className="mt-2 h-20"/>}
                     </div>
                     <div>
-                        <label htmlFor="field_image2" className="block mb-2 text-sm font-medium text-gray-900">
+                        <label htmlFor="field_image2" className="block mb-2 text-sm font-bold text-gray-700">
                             Field Image 2
                         </label>
                         <input
                             type="file"
                             id="field_image2"
                             onChange={(e) => handleImageChange(e, setFieldImage2, setPreviewImage2)}
-                            className="w-full p-1.5 text-xs border rounded border-green-400"
+                            className="w-full p-1.5 text-xs border border-green-800 rounded bg-gray-100 shadow-md"
                             accept="image/*"
                         />
                         {previewImage2 && <img src={previewImage2} alt="Preview 2" className="mt-2 h-20"/>}
@@ -180,14 +180,14 @@ const FieldFormComponent = () => {
                     <button
                         type="button"
                         onClick={() => handleFieldOperation("ADD_FIELD")}
-                        className="w-full text-white bg-green-800 hover:bg-transparent border-2 border-green-800 font-bold rounded-lg text-sm px-5 py-2 text-center"
+                        className="w-full text-white bg-green-800 hover:bg-[#5ea080] border-2 border-green-800 font-bold rounded-lg text-sm px-5 py-2 text-center shadow-md"
                     >
                         Add Field
                     </button>
                     <button
                         type="button"
-                        onClick={() => handleFieldOperation("UPDATE_FIELD")}
-                        className="w-full text-white bg-green-800 hover:bg-transparent border-2 border-green-800 font-bold rounded-lg text-sm px-5 py-2 text-center"
+                        onClick={() => clearForm()}
+                        className="w-full text-white bg-green-800 hover:bg-[#5ea080] border-2 border-green-800 font-bold rounded-lg text-sm px-5 py-2 text-center shadow-md"
                     >
                         Clear
                     </button>

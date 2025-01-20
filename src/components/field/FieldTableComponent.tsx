@@ -3,16 +3,16 @@ import {Field} from "../../models/field.ts";
 
 const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
     return (
-        <div className="overflow-x-auto mx-2 mt-7 bg-gradient-to-r from-white to-light-blue-100 p-4 rounded-lg shadow-lg">
-            <table className="min-w-full border-collapse border border-gray-200 bg-white shadow-md sm:rounded-lg">
+
+        <table className="mt-7 min-w-full border-collapse border-2 border-green-800 bg-transparent shadow-lg sm:rounded-lg">
                 <thead>
                 <tr className="bg-gray-100 text-gray-600 text-sm uppercase tracking-wider">
-                    <th className="px-6 py-3 text-left font-medium">Field Code</th>
-                    <th className="px-6 py-3 text-left font-medium">Field Name</th>
-                    <th className="px-6 py-3 text-left font-medium">Location</th>
-                    <th className="px-6 py-3 text-left font-medium">Field Size</th>
-                    <th className="px-6 py-3 text-left font-medium">Field Image 1</th>
-                    <th className="px-6 py-3 text-left font-medium">Field Image 2</th>
+                    <th className="px-6 py-3 text-left font-bold">Field Code</th>
+                    <th className="px-6 py-3 text-left font-bold">Field Name</th>
+                    <th className="px-6 py-3 text-left font-bold">Location</th>
+                    <th className="px-6 py-3 text-left font-bold">Field Size</th>
+                    <th className="px-6 py-3 text-left font-bold">Field Image 1</th>
+                    <th className="px-6 py-3 text-left font-bold">Field Image 2</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,7 +20,7 @@ const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
                     fields.map((field: Field, index: number) => (
                         <tr
                             key={index}
-                            className="hover:bg-gray-100 even:bg-gray-50 odd:bg-white text-gray-700 border-t"
+                            className="hover:bg-[#5ea080] even:bg-transparent  text-gray-700 border-t"
                         >
                             <td className="px-6 py-4">{field.field_code}</td>
                             <td className="px-6 py-4">{field.field_name}</td>
@@ -31,7 +31,7 @@ const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
                                     <img
                                         src={field.field_image1}
                                         alt="Field Image 1"
-                                        className="h-16 w-16 object-cover rounded"
+                                        className="h-14 w-14 object-cover rounded"
                                     />
                                 ) : (
                                     "No Image"
@@ -42,7 +42,7 @@ const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
                                     <img
                                         src={field.field_image2}
                                         alt="Field Image 2"
-                                        className="h-16 w-16 object-cover rounded"
+                                        className="h-14 w-14 object-cover rounded"
                                     />
                                 ) : (
                                     "No Image"
@@ -59,7 +59,7 @@ const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
                 )}
                 </tbody>
             </table>
-        </div>
+
     );
 };
 

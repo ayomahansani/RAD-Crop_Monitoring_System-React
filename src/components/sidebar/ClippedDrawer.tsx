@@ -74,7 +74,7 @@ export default function HoverableSidebar() {
                     </Typography>
 
                     <img
-                        src="/sidebar.png"
+                        src="/sidebar-logo.png"
                         alt="Green Shadow Logo"
                         style={{width: '150px', height: 'auto', marginTop: '0', marginLeft: '40px'}} // Adjust size and spacing
                     />
@@ -126,9 +126,6 @@ export default function HoverableSidebar() {
                             </Tooltip>
                         ))}
                     </List>
-
-
-                    <Divider sx={{backgroundColor: 'rgba(60,140,103,0.3)'}}/>
                 </Box>
             </Drawer>
 

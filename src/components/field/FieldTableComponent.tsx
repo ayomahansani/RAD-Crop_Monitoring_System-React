@@ -1,11 +1,14 @@
 import {Field} from "../../models/field.ts";
+import {useDispatch} from "react-redux";
+import {deleteField} from "../../reducers/FieldSlice.ts";
 
 
-const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
+const FieldTableComponent = ({ fields = [], onEditField }: { fields?: Field[], onEditField: (field: Field) => void }) => {
+    const dispatch = useDispatch();
 
-    function handleEditField(index: number): void {
-        throw new Error("Function not implemented.");
-    }
+    const handleDeleteField = (fieldCode: string) => {
+        dispatch(deleteField({ field_code: fieldCode }));
+    };
 
     return (
 
@@ -57,13 +60,13 @@ const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
                         <td className="px-6 py-4 text-center">
                             <div className="flex items-center justify-center gap-2">
                                 <button
-                                    onClick={() => handleEditField(index)}
+                                    onClick={() => onEditField(field)}
                                     className="px-4 py-2 text-xs font-bold text-white bg-green-800 rounded hover:bg-green-700 shadow-md"
                                 >
                                     Edit
                                 </button>
                                 <button
-                                    onClick={() => handleDeleteField(index)}
+                                    onClick={() => handleDeleteField(field.field_code)}
                                     className="px-4 py-2 text-xs font-bold text-white bg-black rounded hover:bg-red-900 shadow-md"
                                 >
                                     Delete

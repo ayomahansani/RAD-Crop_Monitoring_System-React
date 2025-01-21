@@ -1,12 +1,11 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
-import {Field} from "../../models/field.ts";
-import {addField, deleteField, updateField} from "../../reducers/FieldSlice.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { useRef, useState } from "react";
+import { Field } from "../../models/field.ts";
+import { addField, updateField } from "../../reducers/FieldSlice.ts";
 import FieldTableComponent from "./FieldTableComponent.tsx";
 
 const FieldFormComponent = () => {
-
-    const fields = useSelector((store)=> store.field);
+    const fields = useSelector((store) => store.field);
     const dispatch = useDispatch();
 
     const [fieldCode, setFieldCode] = useState("");
@@ -17,6 +16,11 @@ const FieldFormComponent = () => {
     const [fieldImage2, setFieldImage2] = useState<File | null>(null);
     const [previewImage1, setPreviewImage1] = useState<string | null>(null);
     const [previewImage2, setPreviewImage2] = useState<string | null>(null);
+
+    const [editMode, setEditMode] = useState(false);
+
+    const fileInput1Ref = useRef<HTMLInputElement>(null);
+    const fileInput2Ref = useRef<HTMLInputElement>(null);
 
     const handleFieldOperation = (type: string) => {
         if (!fieldCode || !fieldName || !fieldLocation || !fieldExtentSize) {
@@ -41,17 +45,28 @@ const FieldFormComponent = () => {
             case "UPDATE_FIELD":
                 dispatch(updateField(newField));
                 clearForm();
-                break;
-            case "DELETE_FIELD":
-                dispatch(deleteField(fieldCode));
-                clearForm();
+                setEditMode(false);
                 break;
             default:
                 break;
         }
     };
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, setImage: React.Dispatch<React.SetStateAction<File | null>>, setPreview: React.Dispatch<React.SetStateAction<string | null>>) => {
+    const handleEditField = (field: Field) => {
+        setFieldCode(field.field_code);
+        setFieldName(field.field_name);
+        setFieldLocation(field.field_location);
+        setFieldExtentSize(field.field_extent_size);
+        setPreviewImage1(field.field_image1 || null);
+        setPreviewImage2(field.field_image2 || null);
+        setEditMode(true);
+    };
+
+    const handleImageChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        setImage: React.Dispatch<React.SetStateAction<File | null>>,
+        setPreview: React.Dispatch<React.SetStateAction<string | null>>
+    ) => {
         const file = e.target.files?.[0];
         if (file) {
             setImage(file);
@@ -68,6 +83,11 @@ const FieldFormComponent = () => {
         setFieldImage2(null);
         setPreviewImage1(null);
         setPreviewImage2(null);
+        setEditMode(false);
+
+        // Clear file input fields
+        if (fileInput1Ref.current) fileInput1Ref.current.value = "";
+        if (fileInput2Ref.current) fileInput2Ref.current.value = "";
     };
 
     const handleSearchByFieldCode = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -84,7 +104,6 @@ const FieldFormComponent = () => {
             }
         }
     };
-
 
     return (
         <>
@@ -154,11 +173,12 @@ const FieldFormComponent = () => {
                         <input
                             type="file"
                             id="field_image1"
+                            ref={fileInput1Ref}
                             onChange={(e) => handleImageChange(e, setFieldImage1, setPreviewImage1)}
                             className="w-full p-1.5 text-xs border border-green-800 rounded bg-gray-100 shadow-md"
                             accept="image/*"
                         />
-                        {previewImage1 && <img src={previewImage1} alt="Preview 1" className="mt-2 h-20"/>}
+                        {previewImage1 && <img src={previewImage1} alt="Preview 1" className="mt-2 h-20" />}
                     </div>
                     <div>
                         <label htmlFor="field_image2" className="block mb-2 text-sm font-bold text-gray-700">
@@ -167,21 +187,22 @@ const FieldFormComponent = () => {
                         <input
                             type="file"
                             id="field_image2"
+                            ref={fileInput2Ref}
                             onChange={(e) => handleImageChange(e, setFieldImage2, setPreviewImage2)}
                             className="w-full p-1.5 text-xs border border-green-800 rounded bg-gray-100 shadow-md"
                             accept="image/*"
                         />
-                        {previewImage2 && <img src={previewImage2} alt="Preview 2" className="mt-2 h-20"/>}
+                        {previewImage2 && <img src={previewImage2} alt="Preview 2" className="mt-2 h-20" />}
                     </div>
                 </div>
 
                 <div className="grid gap-5 md:grid-cols-2 mx-20 mt-4">
                     <button
                         type="button"
-                        onClick={() => handleFieldOperation("ADD_FIELD")}
+                        onClick={() => handleFieldOperation(editMode ? "UPDATE_FIELD" : "ADD_FIELD")}
                         className="w-full text-white bg-green-800 hover:bg-[#5ea080] border-2 border-green-800 font-bold rounded-lg text-sm px-5 py-2 text-center shadow-md"
                     >
-                        Add Field
+                        {editMode ? "Update Field" : "Add Field"}
                     </button>
                     <button
                         type="button"
@@ -191,14 +212,11 @@ const FieldFormComponent = () => {
                         Clear
                     </button>
                 </div>
-
-
             </form>
 
-            <FieldTableComponent fields={fields}/>
+            <FieldTableComponent fields={fields} onEditField={handleEditField} />
         </>
     );
-
 };
 
 export default FieldFormComponent;

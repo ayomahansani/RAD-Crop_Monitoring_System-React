@@ -185,11 +185,11 @@ const VehicleFormComponent = () => {
                             className="w-full p-1 border border-green-800 text-md rounded bg-gray-100 focus:outline-none shadow-md"
                             required
                         >
-                            <option value="" disabled>
+                            <option value="" disabled selected>
                                 choose a staff
                             </option>
-                            <option value="Available">Available</option>
-                            <option value="Out of Service">Out of Service</option>
+                            <option value="Staff1">Staff 1</option>
+                            <option value="Staff2">Staff 2</option>
                         </select>
                     </div>
                 </div>

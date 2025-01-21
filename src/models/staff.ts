@@ -2,7 +2,7 @@ export class Staff {
     staff_id: string;
     first_name: string;
     last_name: string;
-    description: string;
+    designation: string;
     gender: string;
     joined_date: string
     date_of_birth: string;
@@ -11,11 +11,11 @@ export class Staff {
     email: string;
     role: string;
 
-    constructor(staff_id: string, first_name: string, last_name: string, description: string, gender: string, joined_date: string, date_of_birth: string, address: string, contact_number: string, email: string, role: string) {
+    constructor(staff_id: string, first_name: string, last_name: string, designation: string, gender: string, joined_date: string, date_of_birth: string, address: string, contact_number: string, email: string, role: string) {
         this.staff_id = staff_id;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.description = description;
+        this.designation = designation;
         this.gender = gender;
         this.joined_date = joined_date;
         this.date_of_birth = date_of_birth;

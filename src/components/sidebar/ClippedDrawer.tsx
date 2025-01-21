@@ -21,7 +21,7 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 import DashboardPage from '../../pages/Dashboard.tsx';
 import CropsPage from '../../pages/Crops.tsx';
-import StaffPage from '../../pages/Staff.tsx';
+import StaffPage from '../../pages/StaffPage.tsx';
 import VehiclePage from '../../pages/VehiclePage.tsx';
 import EquipmentsPage from '../../pages/Equipments.tsx';
 import FieldPage from "../../pages/FieldPage.tsx";

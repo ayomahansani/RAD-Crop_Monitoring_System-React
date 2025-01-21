@@ -8,13 +8,16 @@ const vehicleSlice = createSlice({
     initialState,
     reducers: {
         addVehicle: (state, action) => {
-
+            state.push(action.payload);
         },
         updateVehicle: (state, action) => {
-
+            const index = state.findIndex((vehicle) => vehicle.vehicle_code === action.payload.vehicle_code);
+            if (index !== -1) {
+                state[index] = action.payload;
+            }
         },
         deleteVehicle: (state, action) => {
-
+            return state.filter((vehicle) => vehicle.vehicle_code !== action.payload.vehicle_code);
         }
     }
 });

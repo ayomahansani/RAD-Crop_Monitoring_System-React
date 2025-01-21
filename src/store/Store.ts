@@ -1,12 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
-import StaffSliceReducer from "../reducers/StaffSlice.ts";
 import FieldSlice from "../reducers/FieldSlice.ts";
 import VehicleSlice from "../reducers/VehicleSlice.ts";
+import StaffSlice from "../reducers/StaffSlice.ts";
 
 
 const store = configureStore({
     reducer: {
-        staffSlice: StaffSliceReducer,
+        staff: StaffSlice,
         field: FieldSlice,
         vehicle: VehicleSlice
     }

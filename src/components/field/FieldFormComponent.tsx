@@ -51,7 +51,6 @@ const FieldFormComponent = () => {
         }
     };
 
-
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, setImage: React.Dispatch<React.SetStateAction<File | null>>, setPreview: React.Dispatch<React.SetStateAction<string | null>>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -71,15 +70,15 @@ const FieldFormComponent = () => {
         setPreviewImage2(null);
     };
 
-    const handleFieldCodeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleSearchByFieldCode = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            const field = fields.find((f: Field) => f.field_code === fieldCode);
-            if (field) {
-                setFieldName(field.field_name);
-                setFieldLocation(field.field_location);
-                setFieldExtentSize(field.field_extent_size);
-                setPreviewImage1(field.field_image1 || null);
-                setPreviewImage2(field.field_image2 || null);
+            const foundField = fields.find((field: Field) => field.field_code === fieldCode);
+            if (foundField) {
+                setFieldName(foundField.field_name);
+                setFieldLocation(foundField.field_location);
+                setFieldExtentSize(foundField.field_extent_size);
+                setPreviewImage1(foundField.field_image1 || null);
+                setPreviewImage2(foundField.field_image2 || null);
             } else {
                 alert("Field not found.");
             }
@@ -100,7 +99,7 @@ const FieldFormComponent = () => {
                             id="field_code"
                             value={fieldCode}
                             onChange={(e) => setFieldCode(e.target.value)}
-                            onKeyDown={handleFieldCodeEnter}
+                            onKeyDown={handleSearchByFieldCode}
                             className="w-full p-1 border border-green-800 rounded bg-gray-100 focus:outline-none shadow-md"
                             placeholder="F123"
                             required

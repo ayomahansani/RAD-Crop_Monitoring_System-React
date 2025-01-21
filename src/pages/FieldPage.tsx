@@ -1,6 +1,5 @@
 import FieldFormComponent from "../components/field/FieldFormComponent.tsx";
 
-
 const FieldPage = () => {
     return (
         <>

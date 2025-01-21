@@ -4,7 +4,6 @@ function RootLayout(){
     return (
         <>
             <ClippedDrawer/>
-
         </>
     )
 }

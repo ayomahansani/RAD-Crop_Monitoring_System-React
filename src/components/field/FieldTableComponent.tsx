@@ -2,6 +2,11 @@ import {Field} from "../../models/field.ts";
 
 
 const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
+
+    function handleEditField(index: number): void {
+        throw new Error("Function not implemented.");
+    }
+
     return (
 
         <table className="mt-7 min-w-full border-collapse border-2 border-green-800 bg-transparent shadow-lg sm:rounded-lg">
@@ -52,13 +57,13 @@ const FieldTableComponent = ({ fields = [] }: { fields?: Field[] }) => {
                         <td className="px-6 py-4 text-center">
                             <div className="flex items-center justify-center gap-2">
                                 <button
-                                    onClick={() => handleFieldOperation("UPDATE_FIELD")}
+                                    onClick={() => handleEditField(index)}
                                     className="px-4 py-2 text-xs font-bold text-white bg-green-800 rounded hover:bg-green-700 shadow-md"
                                 >
                                     Edit
                                 </button>
                                 <button
-                                    onClick={() => handleFieldOperation("DELETE_FIELD")}
+                                    onClick={() => handleDeleteField(index)}
                                     className="px-4 py-2 text-xs font-bold text-white bg-black rounded hover:bg-red-900 shadow-md"
                                 >
                                     Delete

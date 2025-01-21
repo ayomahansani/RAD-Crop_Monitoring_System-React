@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
+import StaffTableComponent from "./StaffTableComponent.tsx";
 
 
 const StaffFormComponent = () => {
@@ -187,6 +188,22 @@ const StaffFormComponent = () => {
                             <option value="OTHER">Other</option>
                         </select>
                     </div>
+                    <div>
+                        <label htmlFor="assignedField" className="block mb-2 text-sm font-bold text-gray-700">
+                            Select Field
+                        </label>
+                        <select
+                            id="assignedField"
+                            className="w-full p-1 border border-green-800 text-md rounded bg-gray-100 focus:outline-none shadow-md"
+                            required
+                        >
+                            <option value="" disabled selected>
+                                choose a field
+                            </option>
+                            <option value="Field1">Field 1</option>
+                            <option value="Field2">Field 2</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div className="grid gap-5 md:grid-cols-2 mx-20 mt-6">
@@ -206,8 +223,9 @@ const StaffFormComponent = () => {
                     </button>
                 </div>
 
-
             </form>
+
+            <StaffTableComponent staffs={staffs} />
         </>
     );
 };

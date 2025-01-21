@@ -4,16 +4,19 @@ import { Field } from "../../models/field.ts";
 import { addField, updateField } from "../../reducers/FieldSlice.ts";
 import FieldTableComponent from "./FieldTableComponent.tsx";
 
+// Define the shape of the store
+interface RootState {
+    field: Field[];
+}
+
 const FieldFormComponent = () => {
-    const fields = useSelector((store) => store.field);
+    const fields = useSelector((store: RootState) => store.field); // Updated useSelector with correct type
     const dispatch = useDispatch();
 
     const [fieldCode, setFieldCode] = useState("");
     const [fieldName, setFieldName] = useState("");
     const [fieldLocation, setFieldLocation] = useState("");
     const [fieldExtentSize, setFieldExtentSize] = useState<number | "">("");
-    const [fieldImage1, setFieldImage1] = useState<File | null>(null);
-    const [fieldImage2, setFieldImage2] = useState<File | null>(null);
     const [previewImage1, setPreviewImage1] = useState<string | null>(null);
     const [previewImage2, setPreviewImage2] = useState<string | null>(null);
 
@@ -64,12 +67,10 @@ const FieldFormComponent = () => {
 
     const handleImageChange = (
         e: React.ChangeEvent<HTMLInputElement>,
-        setImage: React.Dispatch<React.SetStateAction<File | null>>,
         setPreview: React.Dispatch<React.SetStateAction<string | null>>
     ) => {
         const file = e.target.files?.[0];
         if (file) {
-            setImage(file);
             setPreview(URL.createObjectURL(file));
         }
     };
@@ -79,8 +80,6 @@ const FieldFormComponent = () => {
         setFieldName("");
         setFieldLocation("");
         setFieldExtentSize("");
-        setFieldImage1(null);
-        setFieldImage2(null);
         setPreviewImage1(null);
         setPreviewImage2(null);
         setEditMode(false);
@@ -174,7 +173,7 @@ const FieldFormComponent = () => {
                             type="file"
                             id="field_image1"
                             ref={fileInput1Ref}
-                            onChange={(e) => handleImageChange(e, setFieldImage1, setPreviewImage1)}
+                            onChange={(e) => handleImageChange(e, setPreviewImage1)}
                             className="w-full p-1.5 text-xs border border-green-800 rounded bg-gray-100 shadow-md"
                             accept="image/*"
                         />
@@ -188,7 +187,7 @@ const FieldFormComponent = () => {
                             type="file"
                             id="field_image2"
                             ref={fileInput2Ref}
-                            onChange={(e) => handleImageChange(e, setFieldImage2, setPreviewImage2)}
+                            onChange={(e) => handleImageChange(e, setPreviewImage2)}
                             className="w-full p-1.5 text-xs border border-green-800 rounded bg-gray-100 shadow-md"
                             accept="image/*"
                         />

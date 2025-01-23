@@ -6,8 +6,8 @@ import StaffSlice from "../reducers/StaffSlice.ts";
 
 const store = configureStore({
     reducer: {
-        staff: StaffSlice,
         field: FieldSlice,
+        staff: StaffSlice,
         vehicle: VehicleSlice
     }
 });
